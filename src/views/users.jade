@@ -1,0 +1,37 @@
+
+h1 Users
+
+// View users
+if users.length
+    table
+        thead
+            tr
+                th ID
+                th Name
+                th Email
+        tbody
+            each user in users
+                tr
+                    td= user.id
+                    td= user.name
+                    td= user.email
+else
+    p No users found.
+
+// Add user form
+h2 Add User
+form(action='/users', method='POST')
+    label(for='name') Name:
+    input(type='text', name='name')
+    label(for='email') Email:
+    input(type='email', name='email')
+    button(type='submit') Add User
+
+// Remove user form
+h2 Remove User
+form(action='/users/:id/delete', method='POST')
+    label(for='id') ID:
+    select(name='id')
+        each user in users
+            option(value=user.id)= user.id
+    button(type='submit') Remove User
